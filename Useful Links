@@ -1,0 +1,41 @@
+Link 1 - Flocking - https://en.wikipedia.org/wiki/Flocking_(behavior)
+
+Basic Rules
+Separation - avoid crowding neighbors (short range repulsion)
+Alignment - steer towards average heading of neighbors
+Cohesion - steer towards average position of neighbors (long range attraction)
+Starlings Model - 
+Birds fly according to fixed wing aerodynamics, while rolling when turning (thus losing lift).
+They coordinate with a limited number of interaction neighbours of 7 (like real starlings).
+They try to stay above a sleeping site (like starlings do at dawn), and when they happen to move outwards from the sleeping site, they return to it by turning
+They move at relative fixed speed. 
+
+http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0022479
+
+Link 2 - Starling - https://en.wikipedia.org/wiki/Starling
+Useless
+
+Link 3 - Boids - https://en.wikipedia.org/wiki/Boids
+Main Paper - https://dl.acm.org/citation.cfm?doid=37401.37406
+Author's Page - http://www.red3d.com/cwr/boids/
+Author’s Library - http://opensteer.sourceforge.net/doc.html
+Pseudocode with few tweaks - http://www.vergenet.net/~conrad/boids/pseudocode.html
+C++ implementation - http://www.behaviorworks.com/people/ckline/cornellwww/boid/boids.html
+C++ implementation in OpenGl - http://www.navgen.com/3d_boids/index.html
+C# and Unity 3D implementation - https://black-square.github.io/BirdFlock/
+C++ implementation in OpenGl - https://github.com/piskvorky/PredatorPrey
+
+Link 4 - http://cp3-origins.dk/a/14187
+
+Not needed - Modified Model for murmuration
+
+Link 5 and 6 -  https://www.technologyreview.com/s/415022/first-simulation-of-the-flocking-behavior-of-starlings/
+
+Research paper on newer model - https://arxiv.org/abs/0908.2677
+
+
+Link 7 - http://www.pnas.org/content/111/29/10422
+
+Another Model
+
+GitHub Link - https://github.com/jackaperkins/boids
