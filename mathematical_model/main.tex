@@ -127,7 +127,9 @@ The new velocity of each boid is given by:
 The new position of each boid is given by:
 \[ \vec{x_{0}} = \vec{x_{0}} + \vec{v_{0}}\Delta t  \]
 
-\subsection{Energy Calculations}
+\subsection{Energy Calculation}
+
+\subsubsection{Initial Conditions}
 
 Let each bird have an initial energy $E_{0}$ and mass $m_{0}$.
 The simulation starts with $n$ birds each having initial position coordinates  given by :
@@ -148,6 +150,11 @@ Now we have:
 \\
 \noindent Similarily, Let the velocity be initialized randomly such that:
 \[ v_{system} = \frac{\norm{\sum v_{i}}}{n} = v_{0} \] 
+We also have,
+\[ \frac{1}{2} m_{0} \sum_{i}^n \norm{v_{i}}^2 + mg \sum_{i}^n h_{i} < nE_{0} \]
+
+
+\subsubsection{Update Rule}
 
 \noindent At any time $t$, the mechanical energy of boid $i$ is given by:
 \[E_{mech, i, t} = \frac{1}{2} m \norm{v_{i, t}}^2 + mgh_{i,t}\] 
