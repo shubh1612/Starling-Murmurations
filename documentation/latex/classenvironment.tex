@@ -1,0 +1,108 @@
+\hypertarget{classenvironment}{}\section{environment Class Reference}
+\label{classenvironment}\index{environment@{environment}}
+
+
+Datatype to the murmuration simulation data at a timestep.  
+
+
+
+
+{\ttfamily \#include $<$simulation.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classenvironment_ab70fa382f51a7e098e6093ed4643be28}{init\+\_\+environment}} (void)
+\item 
+void \mbox{\hyperlink{classenvironment_a0ccbf5c41be42b0d43a079517b2c7299}{update}} (void)
+\item 
+void \mbox{\hyperlink{classenvironment_ad393e034c116a501e4c39b66d8564087}{handle\+\_\+intersection}} (void)
+\item 
+void \mbox{\hyperlink{classenvironment_a60eddb68039d6c5f3b98e568e02346d7}{simulate}} (void)
+\item 
+void \mbox{\hyperlink{classenvironment_ad7c2f863d61f8188dffd3975111f4cb1}{display\+\_\+energy}} (void)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classenvironment_a0b681df3c52565e6ad6e42baea0c2be8}{num}}
+\begin{DoxyCompactList}\small\item\em Number of starlings in the simulation. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classstarling}{starling}} $>$ \mbox{\hyperlink{classenvironment_a47dbbdcd0b1eb003df03062c5923e8d3}{murmuration}}
+\begin{DoxyCompactList}\small\item\em List of starlings in the simulation. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classenvironment_af0b9e5c67270c8bc45113bd033f3703d}{time\+\_\+step}}
+\begin{DoxyCompactList}\small\item\em Time interval after which each calculation is performed and murmuration displayed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Datatype to the murmuration simulation data at a timestep. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classenvironment_ad7c2f863d61f8188dffd3975111f4cb1}\label{classenvironment_ad7c2f863d61f8188dffd3975111f4cb1}} 
+\index{environment@{environment}!display\+\_\+energy@{display\+\_\+energy}}
+\index{display\+\_\+energy@{display\+\_\+energy}!environment@{environment}}
+\subsubsection{\texorpdfstring{display\+\_\+energy()}{display\_energy()}}
+{\footnotesize\ttfamily void environment\+::display\+\_\+energy (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Display the energy of each boid on commandline \mbox{\Hypertarget{classenvironment_ad393e034c116a501e4c39b66d8564087}\label{classenvironment_ad393e034c116a501e4c39b66d8564087}} 
+\index{environment@{environment}!handle\+\_\+intersection@{handle\+\_\+intersection}}
+\index{handle\+\_\+intersection@{handle\+\_\+intersection}!environment@{environment}}
+\subsubsection{\texorpdfstring{handle\+\_\+intersection()}{handle\_intersection()}}
+{\footnotesize\ttfamily void environment\+::handle\+\_\+intersection (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Finds intersections between intersections and handle them as per requirement \mbox{\Hypertarget{classenvironment_ab70fa382f51a7e098e6093ed4643be28}\label{classenvironment_ab70fa382f51a7e098e6093ed4643be28}} 
+\index{environment@{environment}!init\+\_\+environment@{init\+\_\+environment}}
+\index{init\+\_\+environment@{init\+\_\+environment}!environment@{environment}}
+\subsubsection{\texorpdfstring{init\+\_\+environment()}{init\_environment()}}
+{\footnotesize\ttfamily void environment\+::init\+\_\+environment (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Initializes the initial position, velocity and energy of starlings in space Rule for initialization defined in mathematical model \mbox{\Hypertarget{classenvironment_a60eddb68039d6c5f3b98e568e02346d7}\label{classenvironment_a60eddb68039d6c5f3b98e568e02346d7}} 
+\index{environment@{environment}!simulate@{simulate}}
+\index{simulate@{simulate}!environment@{environment}}
+\subsubsection{\texorpdfstring{simulate()}{simulate()}}
+{\footnotesize\ttfamily void environment\+::simulate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Display the position and velocity vectors of all the starlings in 3D space \mbox{\Hypertarget{classenvironment_a0ccbf5c41be42b0d43a079517b2c7299}\label{classenvironment_a0ccbf5c41be42b0d43a079517b2c7299}} 
+\index{environment@{environment}!update@{update}}
+\index{update@{update}!environment@{environment}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void environment\+::update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Update state of the environment i.\+e position, velocity and energy of all starlings 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classenvironment_a47dbbdcd0b1eb003df03062c5923e8d3}\label{classenvironment_a47dbbdcd0b1eb003df03062c5923e8d3}} 
+\index{environment@{environment}!murmuration@{murmuration}}
+\index{murmuration@{murmuration}!environment@{environment}}
+\subsubsection{\texorpdfstring{murmuration}{murmuration}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classstarling}{starling}}$>$ environment\+::murmuration}
+
+
+
+List of starlings in the simulation. 
+
+\mbox{\Hypertarget{classenvironment_a0b681df3c52565e6ad6e42baea0c2be8}\label{classenvironment_a0b681df3c52565e6ad6e42baea0c2be8}} 
+\index{environment@{environment}!num@{num}}
+\index{num@{num}!environment@{environment}}
+\subsubsection{\texorpdfstring{num}{num}}
+{\footnotesize\ttfamily int environment\+::num}
+
+
+
+Number of starlings in the simulation. 
+
+\mbox{\Hypertarget{classenvironment_af0b9e5c67270c8bc45113bd033f3703d}\label{classenvironment_af0b9e5c67270c8bc45113bd033f3703d}} 
+\index{environment@{environment}!time\+\_\+step@{time\+\_\+step}}
+\index{time\+\_\+step@{time\+\_\+step}!environment@{environment}}
+\subsubsection{\texorpdfstring{time\+\_\+step}{time\_step}}
+{\footnotesize\ttfamily float environment\+::time\+\_\+step}
+
+
+
+Time interval after which each calculation is performed and murmuration displayed. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/manas/\+Academics/sem\+\_\+6/cop290/assign\+\_\+3/\+Starling-\/\+Murmurations/include/\mbox{\hyperlink{simulation_8hpp}{simulation.\+hpp}}\item 
+/home/manas/\+Academics/sem\+\_\+6/cop290/assign\+\_\+3/\+Starling-\/\+Murmurations/src/\mbox{\hyperlink{simulation_8cpp}{simulation.\+cpp}}\end{DoxyCompactItemize}

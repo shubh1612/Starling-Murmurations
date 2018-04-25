@@ -1,0 +1,28 @@
+\hypertarget{index_intro_sec}{}\section{Introduction}\label{index_intro_sec}
+This is a basic model to simulate murmuration of starlings. Discrete time simulation is being performed to model the behaviour.
+
+Basic rules followed by a flock are\+:
+\begin{DoxyItemize}
+\item Separation -\/ avoid crowding neighbors (short range repulsion)
+\item Alignment -\/ steer towards average heading of neighbors
+\item Cohesion -\/ steer towards average position of neighbors (long range attraction)
+\end{DoxyItemize}
+
+All the birds are initially given some initial position, velocity and energy in 3D space. Based on the three base rules and energy consideraton, the parameters are updated at each time step and displayed on screen.\hypertarget{index_code_sec}{}\section{Code Structure}\label{index_code_sec}
+documentation/ -\/ contains the documentation for the code
+
+include/ -\/ contains the header files
+
+mathematical\+\_\+model/ -\/ contains the details of physical modelling
+
+src/ -\/ contains the source files
+
+U\+M\+L\+\_\+diagrams/ -\/ contains the functional specification and class diagram for the model
+
+useful\+\_\+links -\/ contains references for the model
+
+There are two C++ header files that provide utilities for simulation of model\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{physics_8hpp}{physics.\+hpp}} -\/ provide various classes for entities that are involved in the physics of simulation
+\item \mbox{\hyperlink{simulation_8hpp}{simulation.\+hpp}} -\/ provide an environment object to set various hyperparameters of the simulation 
+\end{DoxyItemize}

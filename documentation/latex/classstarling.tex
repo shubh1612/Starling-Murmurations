@@ -1,0 +1,170 @@
+\hypertarget{classstarling}{}\section{starling Class Reference}
+\label{classstarling}\index{starling@{starling}}
+
+
+Datatype to store starling data.  
+
+
+
+
+{\ttfamily \#include $<$physics.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classstarling_aa0e07efe70a471582f609524db1ac8af}{get\+\_\+neighbours}} (std\+::vector$<$ \mbox{\hyperlink{classstarling}{starling}} $>$ murmuration)
+\item 
+\mbox{\hyperlink{classvelocity}{velocity}} \mbox{\hyperlink{classstarling_a9979a7817ef2663a2cf87de308d1f223}{cohesion\+\_\+update}} (void)
+\item 
+\mbox{\hyperlink{classvelocity}{velocity}} \mbox{\hyperlink{classstarling_add23addc4c4ef3e24765f5200b08adca}{separation\+\_\+update}} (void)
+\item 
+\mbox{\hyperlink{classvelocity}{velocity}} \mbox{\hyperlink{classstarling_aff2aa7c8238900186857ced2789d589c}{alignment\+\_\+update}} (void)
+\item 
+void \mbox{\hyperlink{classstarling_ad20f4d47e4042a39771385bee79c07dc}{update\+\_\+velocity}} (void)
+\item 
+void \mbox{\hyperlink{classstarling_a5fa9e4fa8154e1b81adb29573954ec15}{update\+\_\+position}} (void)
+\item 
+void \mbox{\hyperlink{classstarling_a1d8f70aad997f935444426243d3ed20a}{update\+\_\+stored\+\_\+energy}} (void)
+\item 
+void \mbox{\hyperlink{classstarling_a20bc1b29e16a9e3d1e07bd756a3f2dae}{update\+\_\+velocity\+\_\+from\+\_\+energy}} (void)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classposition}{position}} \mbox{\hyperlink{classstarling_ace1e958bb7963210ca9da7c0454c503e}{pos}}
+\begin{DoxyCompactList}\small\item\em Position of the starling at an instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classvelocity}{velocity}} \mbox{\hyperlink{classstarling_ad16101cd58b17920b62adf606b1e5dca}{v}}
+\begin{DoxyCompactList}\small\item\em Velocity of the starling at an instance. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classstarling_a938ea67b6db6f498070095fc6de15179}{neighbours}}
+\begin{DoxyCompactList}\small\item\em Index of neighbours of starling in starling list. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classstarling_ac37c0c0fe85bdeef7370dbe77d77c9ad}{E\+\_\+mech\+\_\+old}}
+\begin{DoxyCompactList}\small\item\em Mechanical energy of boid at the previous time\+\_\+step. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classstarling_a853076e896a808f546ac5a405dd7c48e}{E\+\_\+str}}
+\begin{DoxyCompactList}\small\item\em Energy stored (muscle energy) with an starling at an instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Datatype to store starling data. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classstarling_aff2aa7c8238900186857ced2789d589c}\label{classstarling_aff2aa7c8238900186857ced2789d589c}} 
+\index{starling@{starling}!alignment\+\_\+update@{alignment\+\_\+update}}
+\index{alignment\+\_\+update@{alignment\+\_\+update}!starling@{starling}}
+\subsubsection{\texorpdfstring{alignment\+\_\+update()}{alignment\_update()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classvelocity}{velocity}} starling\+::alignment\+\_\+update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Finds the velocity update from the \char`\"{}\+Alignment\char`\"{} rule \begin{DoxyReturn}{Returns}
+Change in velocity due to the rule 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstarling_a9979a7817ef2663a2cf87de308d1f223}\label{classstarling_a9979a7817ef2663a2cf87de308d1f223}} 
+\index{starling@{starling}!cohesion\+\_\+update@{cohesion\+\_\+update}}
+\index{cohesion\+\_\+update@{cohesion\+\_\+update}!starling@{starling}}
+\subsubsection{\texorpdfstring{cohesion\+\_\+update()}{cohesion\_update()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classvelocity}{velocity}} starling\+::cohesion\+\_\+update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Finds the velocity update from the \char`\"{}\+Cohesion\char`\"{} rule \begin{DoxyReturn}{Returns}
+Change in velocity due to the rule 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstarling_aa0e07efe70a471582f609524db1ac8af}\label{classstarling_aa0e07efe70a471582f609524db1ac8af}} 
+\index{starling@{starling}!get\+\_\+neighbours@{get\+\_\+neighbours}}
+\index{get\+\_\+neighbours@{get\+\_\+neighbours}!starling@{starling}}
+\subsubsection{\texorpdfstring{get\+\_\+neighbours()}{get\_neighbours()}}
+{\footnotesize\ttfamily void starling\+::get\+\_\+neighbours (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classstarling}{starling}} $>$}]{murmuration }\end{DoxyParamCaption})}
+
+Finds the neighbours of the starling 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em murmuration} & List of all starlings \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classstarling_add23addc4c4ef3e24765f5200b08adca}\label{classstarling_add23addc4c4ef3e24765f5200b08adca}} 
+\index{starling@{starling}!separation\+\_\+update@{separation\+\_\+update}}
+\index{separation\+\_\+update@{separation\+\_\+update}!starling@{starling}}
+\subsubsection{\texorpdfstring{separation\+\_\+update()}{separation\_update()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classvelocity}{velocity}} starling\+::separation\+\_\+update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Finds the velocity update from the \char`\"{}\+Separation\char`\"{} rule \begin{DoxyReturn}{Returns}
+Change in velocity due to the rule 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstarling_a5fa9e4fa8154e1b81adb29573954ec15}\label{classstarling_a5fa9e4fa8154e1b81adb29573954ec15}} 
+\index{starling@{starling}!update\+\_\+position@{update\+\_\+position}}
+\index{update\+\_\+position@{update\+\_\+position}!starling@{starling}}
+\subsubsection{\texorpdfstring{update\+\_\+position()}{update\_position()}}
+{\footnotesize\ttfamily void starling\+::update\+\_\+position (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Update position based on the velocity at an instance \mbox{\Hypertarget{classstarling_a1d8f70aad997f935444426243d3ed20a}\label{classstarling_a1d8f70aad997f935444426243d3ed20a}} 
+\index{starling@{starling}!update\+\_\+stored\+\_\+energy@{update\+\_\+stored\+\_\+energy}}
+\index{update\+\_\+stored\+\_\+energy@{update\+\_\+stored\+\_\+energy}!starling@{starling}}
+\subsubsection{\texorpdfstring{update\+\_\+stored\+\_\+energy()}{update\_stored\_energy()}}
+{\footnotesize\ttfamily void starling\+::update\+\_\+stored\+\_\+energy (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Update the energy stored(muscle energy) with the starling after change in velocity and position Update only performed if the energy stored is more than some specified limit \mbox{\Hypertarget{classstarling_ad20f4d47e4042a39771385bee79c07dc}\label{classstarling_ad20f4d47e4042a39771385bee79c07dc}} 
+\index{starling@{starling}!update\+\_\+velocity@{update\+\_\+velocity}}
+\index{update\+\_\+velocity@{update\+\_\+velocity}!starling@{starling}}
+\subsubsection{\texorpdfstring{update\+\_\+velocity()}{update\_velocity()}}
+{\footnotesize\ttfamily void starling\+::update\+\_\+velocity (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Update velocity using the three base rules \mbox{\Hypertarget{classstarling_a20bc1b29e16a9e3d1e07bd756a3f2dae}\label{classstarling_a20bc1b29e16a9e3d1e07bd756a3f2dae}} 
+\index{starling@{starling}!update\+\_\+velocity\+\_\+from\+\_\+energy@{update\+\_\+velocity\+\_\+from\+\_\+energy}}
+\index{update\+\_\+velocity\+\_\+from\+\_\+energy@{update\+\_\+velocity\+\_\+from\+\_\+energy}!starling@{starling}}
+\subsubsection{\texorpdfstring{update\+\_\+velocity\+\_\+from\+\_\+energy()}{update\_velocity\_from\_energy()}}
+{\footnotesize\ttfamily void starling\+::update\+\_\+velocity\+\_\+from\+\_\+energy (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Update the velocity of based on energy stored If the stored energy is less than a specified constant, increase the stored energy by decreasing the mechanical energy at the present instance 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classstarling_ac37c0c0fe85bdeef7370dbe77d77c9ad}\label{classstarling_ac37c0c0fe85bdeef7370dbe77d77c9ad}} 
+\index{starling@{starling}!E\+\_\+mech\+\_\+old@{E\+\_\+mech\+\_\+old}}
+\index{E\+\_\+mech\+\_\+old@{E\+\_\+mech\+\_\+old}!starling@{starling}}
+\subsubsection{\texorpdfstring{E\+\_\+mech\+\_\+old}{E\_mech\_old}}
+{\footnotesize\ttfamily float starling\+::\+E\+\_\+mech\+\_\+old}
+
+
+
+Mechanical energy of boid at the previous time\+\_\+step. 
+
+\mbox{\Hypertarget{classstarling_a853076e896a808f546ac5a405dd7c48e}\label{classstarling_a853076e896a808f546ac5a405dd7c48e}} 
+\index{starling@{starling}!E\+\_\+str@{E\+\_\+str}}
+\index{E\+\_\+str@{E\+\_\+str}!starling@{starling}}
+\subsubsection{\texorpdfstring{E\+\_\+str}{E\_str}}
+{\footnotesize\ttfamily float starling\+::\+E\+\_\+str}
+
+
+
+Energy stored (muscle energy) with an starling at an instance. 
+
+\mbox{\Hypertarget{classstarling_a938ea67b6db6f498070095fc6de15179}\label{classstarling_a938ea67b6db6f498070095fc6de15179}} 
+\index{starling@{starling}!neighbours@{neighbours}}
+\index{neighbours@{neighbours}!starling@{starling}}
+\subsubsection{\texorpdfstring{neighbours}{neighbours}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ starling\+::neighbours}
+
+
+
+Index of neighbours of starling in starling list. 
+
+\mbox{\Hypertarget{classstarling_ace1e958bb7963210ca9da7c0454c503e}\label{classstarling_ace1e958bb7963210ca9da7c0454c503e}} 
+\index{starling@{starling}!pos@{pos}}
+\index{pos@{pos}!starling@{starling}}
+\subsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classposition}{position}} starling\+::pos}
+
+
+
+Position of the starling at an instance. 
+
+\mbox{\Hypertarget{classstarling_ad16101cd58b17920b62adf606b1e5dca}\label{classstarling_ad16101cd58b17920b62adf606b1e5dca}} 
+\index{starling@{starling}!v@{v}}
+\index{v@{v}!starling@{starling}}
+\subsubsection{\texorpdfstring{v}{v}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classvelocity}{velocity}} starling\+::v}
+
+
+
+Velocity of the starling at an instance. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/manas/\+Academics/sem\+\_\+6/cop290/assign\+\_\+3/\+Starling-\/\+Murmurations/include/\mbox{\hyperlink{physics_8hpp}{physics.\+hpp}}\item 
+/home/manas/\+Academics/sem\+\_\+6/cop290/assign\+\_\+3/\+Starling-\/\+Murmurations/src/\mbox{\hyperlink{physics_8cpp}{physics.\+cpp}}\end{DoxyCompactItemize}
