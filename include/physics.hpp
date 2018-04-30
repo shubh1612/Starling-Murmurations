@@ -37,11 +37,11 @@ public:
 /*! \brief Datatype to store starling data*/ 
 class starling{
 public:
-	/// Position of the starling at an instance
-	position pos;
+	/// Position of the starling at an instance and previous instance
+	position pos_old, pos_new;
 
-	/// Velocity of the starling at an instance
-	velocity v;
+	/// Velocity of the starling at an instance and previous instance
+	velocity v_old, v_new;
 
 	/// Index of neighbours of starling in starling list
 	std::vector<int> neighbours;
