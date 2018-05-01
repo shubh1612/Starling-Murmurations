@@ -16,7 +16,15 @@ public:
 	/// z-coordinate
 	float z;
 
+	position();
+
 	position operator+(const position &param);
+
+	position operator-(const position &param);
+
+	position operator/(const float &c);
+
+	position operator*(const float &c);
 };
 
 /*! \brief Datatype to store velocity of a starling*/ 
@@ -31,7 +39,16 @@ public:
 	/// Velocity in z-direction
 	float v_z;
 
+	velocity();
+	
 	velocity operator+(const velocity &param);
+
+	velocity operator-(const velocity &param);
+
+	velocity operator/(const float &c);
+
+	velocity operator*(const float &c);
+
 };
 
 /*! \brief Datatype to store starling data*/ 
@@ -47,38 +64,38 @@ public:
 	std::vector<int> neighbours;
 
 	/// Mechanical energy of boid at the previous time_step
-	float E_mech_old;
+	float E_mech_old, E_mech_new;
 
 	/// Energy stored (muscle energy) with an starling at an instance
-	float E_str;
+	float E_str_old, E_str_new;
 
 	/** Finds the neighbours of the starling
 	* @param[in] murmuration List of all starlings
 	*/
-	void get_neighbours(std::vector<starling> murmuration);
+	void get_neighbours(std::vector<starling> &murmuration);
 
 	/** Finds the velocity update from the "Cohesion" rule
 	*   @return Change in velocity due to the rule 
 	*/
-	velocity cohesion_update(void);
+	velocity cohesion_update(std::vector<starling> &murmuration);
 
 	/** Finds the velocity update from the "Separation" rule
 	*   @return Change in velocity due to the rule 
 	*/
-	velocity separation_update(void);
+	velocity separation_update(std::vector<starling> &murmuration);
 
 	/** Finds the velocity update from the "Alignment" rule
 	*   @return Change in velocity due to the rule 
 	*/
-	velocity alignment_update(void);
+	velocity alignment_update(std::vector<starling> &murmuration);
 
 	/** Update velocity using the three base rules
 	*/
-	void update_velocity(void);
+	void update_velocity(std::vector<starling> &murmuration);
 
 	/** Update position based on the velocity at an instance
 	*/
-	void update_position(void);
+	void update_position(float time_step);
 
 	/** Update the energy stored(muscle energy) with the starling after change in velocity and position
 	*	Update only performed if the energy stored is more than some specified limit

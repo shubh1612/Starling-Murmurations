@@ -1,5 +1,4 @@
 #include <vector>
-//OpenGL libraries
 
 #ifndef SIMULATION_HPP
 #define SIMULATION_HPP
