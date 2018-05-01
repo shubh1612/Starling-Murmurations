@@ -1,4 +1,5 @@
 #include <vector>
+#include "physics.hpp"
 
 #ifndef SIMULATION_HPP
 #define SIMULATION_HPP

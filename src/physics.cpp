@@ -171,10 +171,12 @@ void starling::update_velocity(vector<starling> &murmuration){
 }
 
 void starling::update_position(float time_step){
-	pos_new = pos_old + v_new*time_step;
+	pos_new.x = pos_old.x + v_new.v_x*time_step;
+	pos_new.y = pos_old.y + v_new.v_y*time_step;
+	pos_new.z = pos_old.z + v_new.v_z*time_step;
 }
 
-void starling::update_stored_energy(void);{
+void starling::update_stored_energy(void){
 	float mod_v;
 	E_mech_old = E_mech_new;
 	E_str_old = E_str_new;
@@ -189,6 +191,6 @@ void starling::update_stored_energy(void);{
 	E_str_new -= E_mech_new - E_mech_old - EPSILON_V * vm;
 }
 
-void starling::update_velocity_from_energy(void);{
+void starling::update_velocity_from_energy(void){
 
 }
