@@ -67,7 +67,17 @@ void environment::handle_intersection(void){
 }
 
 void environment::simulate(void){
-
+	int gd = DETECT, gm;
+	initgraph(&gd, &gm, "");
+	position p;
+	for(int i = 0; i<num; i++)
+	{
+		p = murmuration[i].pos_new;
+		cleardevice();
+		setcolor(YELLOW);
+        	setfillstyle(SOLID_FILL, RED);
+ 		circle(p.x, p.y, 10);
+	}
 }
 
 void environment::display_energy(void){
