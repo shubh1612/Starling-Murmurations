@@ -1,10 +1,11 @@
 #include <iostream>
 #include "simulation.hpp"
 #include "physics.hpp"
+#include "omp.h"
 
 using namespace std;
 
-static float TOTAL_TIME = 4.0;
+static float TOTAL_TIME = 40.0;
 
 int main(){
 	
@@ -20,12 +21,15 @@ int main(){
 	float present_time = 0;
 
 	while(present_time < TOTAL_TIME){
+		double start = omp_get_wtime();
 		env.update();
 		env.handle_intersection();
-		env.simulate();
+		// env.simulate();
 		env.display_energy();
 
 		present_time += env.time_step;
+
+		// cout << omp_get_wtime() - start << endl;
 	}
 
 	return 0;

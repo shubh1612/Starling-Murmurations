@@ -5,11 +5,11 @@
 using namespace std;
 
 static float NIEGHBOUR_RADIUS = 100.0; // constant
-static float EPSILON_COHESION = 0.01; // constant
-static float EPSILON_SEPARATION = -0.01; // constant
-static float EPSILON_ALIGNMENT = 0.01; // constant
-static float MASS_STARLING = 1; // constant
-static float EPSILON_V = 0.01;
+static float EPSILON_COHESION = 0.1; // constant
+static float EPSILON_SEPARATION = -0.1; // constant
+static float EPSILON_ALIGNMENT = 0.1; // constant
+static float MASS_STARLING = 10; // constant
+static float EPSILON_V = 0.1;
 
 position::position(void){
 	x = 0.0;
@@ -91,31 +91,34 @@ velocity velocity::operator*(const float &c){
 //Starling
 void starling::get_neighbours(vector<starling> &murmuration){
 	int star_num = murmuration.size(); 
-
+	#pragma omp parallel for num_threads(4)
 	for(int i=0;i<star_num;i++)
 	{	
 		murmuration[i].neighbours.clear();
 		murmuration[i].pos_old = murmuration[i].pos_new;
 		murmuration[i].v_old = murmuration[i].v_new;
-	}
+		murmuration[i].neighbours.resize(7);
 
-	for(int i=0;i<star_num;i++)
-	{
+		int count = 0;
 		position p1, p2;
 		p1 = murmuration[i].pos_old;
-		for(int j=i+1;j<star_num;j++)
-		{
+
+		for(int j=0;j<star_num;j++){
+			if (count > 7){
+				break;
+			}
+			if(i==j) continue;
+
 			p2 = murmuration[j].pos_old;
 			float dist;
 			dist = pow((p1.x - p2.x), 2) + pow((p1.y - p2.y), 2) + pow((p1.z - p2.z), 2);
 			if(dist < NIEGHBOUR_RADIUS)
-			{
-				murmuration[i].neighbours.push_back(j);
-				murmuration[j].neighbours.push_back(i);
+			{	
+				murmuration[i].neighbours[count] = j;
+				count++;
 			}
 		}
 	}
-
 }
 
 velocity starling::cohesion_update(vector<starling> &murmuration){

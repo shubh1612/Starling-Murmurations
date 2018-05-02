@@ -3,7 +3,7 @@ IDIR = ../include
 CXXFLAGS = -I$(IDIR) -w -std=c++11
 ODIR = ../bin
 
-LIBS = -lGL -lGLU -lglut -fopenmp
+LIBS = -lGL -lGLU -lglut -fopenmp -lgraph
 
 DEPS = physics.cpp simulation.cpp
 

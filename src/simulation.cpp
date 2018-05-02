@@ -5,17 +5,18 @@
 #include "omp.h"
 #include "physics.hpp"
 #include "simulation.hpp"
+#include "graphics.h"
 
 using namespace std;
 
-static float E_INITIAL = 100000;
+static float E_INITIAL = 100000000;
 static float MEAN_XY = 200;  
 static float MEAN_Z = 10;
 static float VAR_POSXY = 50;
 static float VAR_POSZ = 2;
-static float MEAN_VEL = 5; 
-static float VAR_VEL = 1; 
-static float TIME_STEP = 3.0; 
+static float MEAN_VEL = 10; 
+static float VAR_VEL = 2; 
+static float TIME_STEP = 0.1; 
 
 
 void environment::init_environment(void){
@@ -28,7 +29,7 @@ void environment::init_environment(void){
 	normal_distribution<float> distribution2(MEAN_Z, VAR_POSZ);
 	normal_distribution<float> distribution3(MEAN_VEL, VAR_VEL);
 
-	#pragma omp for
+	#pragma omp parallel for
 	for(int i = 0; i < num; i++)
 	{
 		starling c;
@@ -53,13 +54,18 @@ void environment::init_environment(void){
 }
 
 void environment::update(void){
-	#pragma omp for
+	double start = omp_get_wtime();
+	// #pragma omp parallel for
 	for(int i = 0 ; i < num; i++){
+		
 		murmuration[i].get_neighbours(murmuration);
 		murmuration[i].update_velocity(murmuration);
 		murmuration[i].update_position(time_step);
 		murmuration[i].update_stored_energy();
+		
+	
 	}
+	// cout << omp_get_wtime() - start << endl;
 }
 
 void environment::handle_intersection(void){
@@ -74,8 +80,8 @@ void environment::simulate(void){
 	{
 		p = murmuration[i].pos_new;
 		cleardevice();
-		setcolor(YELLOW);
-        	setfillstyle(SOLID_FILL, RED);
+		// setcolor(YELLOW);
+  //       	setfillstyle(SOLID_FILL, RED);
  		circle(p.x, p.y, 10);
 	}
 }
