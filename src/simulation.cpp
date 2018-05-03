@@ -73,17 +73,39 @@ void environment::handle_intersection(void){
 }
 
 void environment::simulate(void){
-	int gd = DETECT, gm;
-	initgraph(&gd, &gm, "");
+
+	glutInit(NULL,NULL);
+	glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize (500, 500);
+	glutInitWindowPosition (100, 100);
+	glutCreateWindow ("birds");
+	init2D(0.0,0.0,0.0);
+	glutDisplayFunc(display);
+	glutMainLoop();
+}
+
+void init2D(float r, float g, float b)
+{
+	glClearColor(r,g,b,0.0);  
+	glMatrixMode (GL_PROJECTION);
+	gluOrtho2D (0.0, 200.0, 0.0, 150.0);
+}
+
+void display(void)
+{
 	position p;
-	for(int i = 0; i<num; i++)
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3f(1.0, 0.0, 0.0);
+
+	glBegin(GL_POINTS);
+	for(int i = 0; i < num; i++)
 	{
 		p = murmuration[i].pos_new;
-		cleardevice();
-		// setcolor(YELLOW);
-  //       	setfillstyle(SOLID_FILL, RED);
- 		circle(p.x, p.y, 10);
+		glVertex2i(p.x,p.y);
 	}
+	glEnd();
+
+	glFlush();
 }
 
 void environment::display_energy(void){
