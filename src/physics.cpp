@@ -4,12 +4,13 @@
 
 using namespace std;
 
-static float NIEGHBOUR_RADIUS = 100.0; // constant
-static float EPSILON_COHESION = 0.1; // constant
-static float EPSILON_SEPARATION = -0.1; // constant
-static float EPSILON_ALIGNMENT = 0.1; // constant
+static float NEIGHBOUR_RADIUS = 100.0; // constant
+static float EPSILON_COHESION = 0.01; // constant
+static float EPSILON_SEPARATION = -0.05; // constant
+static float EPSILON_ALIGNMENT = 0.01; // constant
 static float MASS_STARLING = 10; // constant
-static float EPSILON_V = 0.1;
+static float EPSILON_V = 1;
+static float EPSILON_CLOSE = 0.01;
 
 position::position(void){
 	x = 0.0;
@@ -112,7 +113,7 @@ void starling::get_neighbours(vector<starling> &murmuration){
 			p2 = murmuration[j].pos_old;
 			float dist;
 			dist = pow((p1.x - p2.x), 2) + pow((p1.y - p2.y), 2) + pow((p1.z - p2.z), 2);
-			if(dist < NIEGHBOUR_RADIUS)
+			if(dist < NEIGHBOUR_RADIUS)
 			{	
 				murmuration[i].neighbours[count] = j;
 				count++;
@@ -142,7 +143,9 @@ velocity starling::cohesion_update(vector<starling> &murmuration){
 velocity starling::separation_update(vector<starling> &murmuration){
 	position sep;
 	for(int i = 0; i < neighbours.size(); i++){
-		sep = sep + murmuration[neighbours[i]].pos_old - pos_old;
+		position p = murmuration[neighbours[i]].pos_old;
+		if((pow(p.x - pos_old.x, 2) + pow(p.y - pos_old.y, 2) + pow(p.z - pos_old.z, 2)) < EPSILON_CLOSE)
+			sep = sep + murmuration[neighbours[i]].pos_old - pos_old;
 	}
 
 	velocity delta_v;
@@ -191,7 +194,11 @@ void starling::update_stored_energy(void){
 	mod_change = v_new - v_old;
 	float vm = abs(mod_change.v_x) + abs(mod_change.v_y) + abs(mod_change.v_z);
 
-	E_str_new -= E_mech_new - E_mech_old - EPSILON_V * vm;
+	float delta_E = 0;
+	if(E_mech_new - E_mech_old > 0) 
+		delta_E = E_mech_new - E_mech_old;
+	
+	E_str_new = E_str_new - delta_E - EPSILON_V * vm;
 }
 
 void starling::update_velocity_from_energy(void){
