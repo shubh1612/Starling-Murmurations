@@ -4,9 +4,9 @@
 
 using namespace std;
 
-static float NEIGHBOUR_RADIUS = 100.0; // constant
-static float EPSILON_COHESION = 0.01; // constant
-static float EPSILON_SEPARATION = -0.05; // constant
+static float NEIGHBOUR_RADIUS = 10.0; // constant
+static float EPSILON_COHESION = 0.5; // constant
+static float EPSILON_SEPARATION = -0.072; // constant
 static float EPSILON_ALIGNMENT = 0.01; // constant
 static float MASS_STARLING = 10; // constant
 static float EPSILON_V = 1;
@@ -143,8 +143,8 @@ velocity starling::cohesion_update(vector<starling> &murmuration){
 velocity starling::separation_update(vector<starling> &murmuration){
 	position sep;
 	for(int i = 0; i < neighbours.size(); i++){
-		position p = murmuration[neighbours[i]].pos_old;
-		if((pow(p.x - pos_old.x, 2) + pow(p.y - pos_old.y, 2) + pow(p.z - pos_old.z, 2)) < EPSILON_CLOSE)
+		// position p = murmuration[neighbours[i]].pos_old;
+		// if((pow(p.x - pos_old.x, 2) + pow(p.y - pos_old.y, 2) + pow(p.z - pos_old.z, 2)) < EPSILON_CLOSE)
 			sep = sep + murmuration[neighbours[i]].pos_old - pos_old;
 	}
 

@@ -13,9 +13,9 @@ static float MEAN_XY = 100;
 static float MEAN_Z = 20;
 static float VAR_POSXY = 30;
 static float VAR_POSZ = 2;
-static float MEAN_VEL = 10; 
-static float VAR_VEL = 2; 
-static float TIME_STEP = 2.0; 
+static float MEAN_VEL = 5; 
+static float VAR_VEL = 1; 
+static float TIME_STEP = 0.05; 
 
 
 void environment::init_environment(void){
@@ -47,8 +47,8 @@ void environment::init_environment(void){
 		v.v_x = v.v_y = v.v_z = number3;
 
 		c.E_mech_old = E_INITIAL; /**some value **/
-		c.pos_old = p;
-		c.v_old = v;
+		c.pos_new = p;
+		c.v_new = v;
 
 		murmuration[i] = c;
 	}
@@ -59,11 +59,11 @@ void environment::update(void){
 	// #pragma omp parallel for
 	for(int i = 0 ; i < num; i++){
 		
-		// murmuration[i].get_neighbours(murmuration);
-		// murmuration[i].update_velocity(murmuration);
-		// murmuration[i].update_position(time_step);
+		murmuration[i].get_neighbours(murmuration);
+		murmuration[i].update_velocity(murmuration);
+		murmuration[i].update_position(time_step);
 		// murmuration[i].update_stored_energy();
-		murmuration[i].pos_old.x++;	
+		// murmuration[i].pos_new.x++;	
 	
 	}
 	// cout << omp_get_wtime() - start << endl;

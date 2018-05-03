@@ -3,21 +3,13 @@
 #include "physics.hpp"
 #include "omp.h"
 #include <GL/glut.h>
+#include <unistd.h>
+#include <cmath>
 
 using namespace std;
 
-// static float TOTAL_TIME = 4.0;
-
-// vector<starling> murmuration;
 environment env;
-
-int refreshMills = 100;        // refresh interval in milliseconds [NEW]
-int temp = 0;
-
-void timer(int value) {
-   glutPostRedisplay();      // Post re-paint request to activate display()
-   glutTimerFunc(refreshMills, timer, 0); // next timer call milliseconds later
-}
+int mainwindow;
 
 
 void init2D(float r, float g, float b)
@@ -27,9 +19,20 @@ void init2D(float r, float g, float b)
 	gluOrtho2D (0.0, 200.0, 0.0, 150.0);
 }
 
+void updates(void){
+	env.update();
+	env.handle_intersection();
+	env.display_energy();
+	glutSetWindow(mainwindow);
+	glutPostRedisplay();
+	// usleep(10000);
+}
+
 void display(void)
 {	
 	position p;
+	velocity v;
+	float mod;
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0, 0.0, 0.0);
 	glPointSize(5.0);
@@ -38,23 +41,33 @@ void display(void)
 	// cout << env.num << endl;
 	for(int i = 0; i < env.num; i++)
 	{	
-		p = env.murmuration[i].pos_old;
-		glVertex2f(p.x + temp ,p.y + temp);
+		p = env.murmuration[i].pos_new;
+		v = env.murmuration[i].v_new;
+		mod = sqrt(v.v_x*v.v_x + v.v_y*v.v_y);
+		
+		glVertex2f(p.x, p.y);
 		cout << p.x << " " << p.y << endl;
+		// glBegin(GL_LINE);
+		// glVertex2f(p.x, p.y);
+		// glVertex2f(p.x + 10.0*v.v_x/mod, p.y + 10.0*v.v_y/mod);
+		// glEnd();
 	}
 	glEnd();
 
-	// //draw a line
-	// glBegin(GL_LINES);
-	// 	glVertex2i(10,10);
-	// 	glVertex2i(100,100);
-	// glEnd();
+	glBegin(GL_LINES);
+	for(int i = 0; i < env.num; i++)
+	{	
+		p = env.murmuration[i].pos_new;
+		v = env.murmuration[i].v_new;
+		mod = sqrt(v.v_x*v.v_x + v.v_y*v.v_y);
+		
+		glVertex2f(p.x, p.y);
+		glVertex2f(p.x + 5.0*v.v_x/mod, p.y + 5.0*v.v_y/mod);
+	}
+	glEnd();
 
 	glFlush();
 
-	env.update();
-	env.handle_intersection();
-	env.display_energy();
 	
 }
 
@@ -73,10 +86,11 @@ int main(int argc,char *argv[]){
 	glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize (1000, 1000);
 	glutInitWindowPosition (0, 0);
-	glutCreateWindow ("points and lines");
+	mainwindow = glutCreateWindow ("points and lines");
 	init2D(0.0,0.0,0.0);
 	glutDisplayFunc(display);
-	glutTimerFunc(0, timer, 0);     // First timer call immediately [NEW]	
+	// glutTimerFunc(0, timer, 0);     // First timer call immediately [NEW]	
+	glutIdleFunc(updates);
 	glutMainLoop();
 
 	return 0;
