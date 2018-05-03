@@ -33,11 +33,11 @@ public:
 	*/
 	void simulate(void);
 
+	
 	/** Display the energy of each boid on commandline
 	*/
 	void display_energy(void);
 
 };
-
 
 #endif

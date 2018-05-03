@@ -5,18 +5,17 @@
 #include "omp.h"
 #include "physics.hpp"
 #include "simulation.hpp"
-#include "graphics.h"
 
 using namespace std;
 
 static float E_INITIAL = 100000000;
-static float MEAN_XY = 200;  
-static float MEAN_Z = 10;
-static float VAR_POSXY = 50;
+static float MEAN_XY = 100;  
+static float MEAN_Z = 20;
+static float VAR_POSXY = 30;
 static float VAR_POSZ = 2;
 static float MEAN_VEL = 10; 
 static float VAR_VEL = 2; 
-static float TIME_STEP = 0.1; 
+static float TIME_STEP = 2.0; 
 
 
 void environment::init_environment(void){
@@ -37,8 +36,10 @@ void environment::init_environment(void){
 		velocity v;
 
 		/***Initializing position, velocity and energy***/
+		float number = distribution1(generator1);
+		p.x = number;
 		float number1 = distribution1(generator1);
-		p.x = p.y = number1;
+		p.y = number1;
 		float number2 = distribution2(generator2);
 		p.z = number2;
 
@@ -46,8 +47,8 @@ void environment::init_environment(void){
 		v.v_x = v.v_y = v.v_z = number3;
 
 		c.E_mech_old = E_INITIAL; /**some value **/
-		c.pos_new = p;
-		c.v_new = v;
+		c.pos_old = p;
+		c.v_old = v;
 
 		murmuration[i] = c;
 	}
@@ -58,11 +59,11 @@ void environment::update(void){
 	// #pragma omp parallel for
 	for(int i = 0 ; i < num; i++){
 		
-		murmuration[i].get_neighbours(murmuration);
-		murmuration[i].update_velocity(murmuration);
-		murmuration[i].update_position(time_step);
-		murmuration[i].update_stored_energy();
-		
+		// murmuration[i].get_neighbours(murmuration);
+		// murmuration[i].update_velocity(murmuration);
+		// murmuration[i].update_position(time_step);
+		// murmuration[i].update_stored_energy();
+		murmuration[i].pos_old.x++;	
 	
 	}
 	// cout << omp_get_wtime() - start << endl;
@@ -74,39 +75,39 @@ void environment::handle_intersection(void){
 
 void environment::simulate(void){
 
-	glutInit(NULL,NULL);
-	glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
-	glutInitWindowSize (500, 500);
-	glutInitWindowPosition (100, 100);
-	glutCreateWindow ("birds");
-	init2D(0.0,0.0,0.0);
-	glutDisplayFunc(display);
-	glutMainLoop();
+	// glutInit(NULL,NULL);
+	// glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+	// glutInitWindowSize (500, 500);
+	// glutInitWindowPosition (100, 100);
+	// glutCreateWindow ("birds");
+	// init2D(0.0,0.0,0.0);
+	// // glutDisplayFunc(display);
+	// glutMainLoop();
 }
 
-void init2D(float r, float g, float b)
-{
-	glClearColor(r,g,b,0.0);  
-	glMatrixMode (GL_PROJECTION);
-	gluOrtho2D (0.0, 200.0, 0.0, 150.0);
-}
+// void init2D(float r, float g, float b)
+// {
+// 	glClearColor(r,g,b,0.0);  
+// 	glMatrixMode (GL_PROJECTION);
+// 	gluOrtho2D (0.0, 200.0, 0.0, 150.0);
+// }
 
-void display(void)
-{
-	position p;
-	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(1.0, 0.0, 0.0);
+// void display(void)
+// {
+// 	// position p;
+// 	// glClear(GL_COLOR_BUFFER_BIT);
+// 	// glColor3f(1.0, 0.0, 0.0);
 
-	glBegin(GL_POINTS);
-	for(int i = 0; i < num; i++)
-	{
-		p = murmuration[i].pos_new;
-		glVertex2i(p.x,p.y);
-	}
-	glEnd();
+// 	// glBegin(GL_POINTS);
+// 	// for(int i = 0; i < 10; i++)
+// 	// {
+// 	// 	// p = murmuration[i].pos_new;
+// 	// 	glVertex2i(i*100.0,i*100.0);
+// 	// }
+// 	// glEnd();
 
-	glFlush();
-}
+// 	// glFlush();
+// }
 
 void environment::display_energy(void){
 	
@@ -120,7 +121,7 @@ void environment::display_energy(void){
 		avg += E;
 	}
 
-	cout<<"Maximum Energy at present instant is - " << max << "\n";
-	cout<<"Minimum Energy at present instant is - " << min << "\n";
-	cout<<"Average Energy at present instant is - " << avg/num << "\n";
+	cout<<"Maximum Energy at present instant is : " << max << "\n";
+	cout<<"Minimum Energy at present instant is : " << min << "\n";
+	cout<<"Average Energy at present instant is : " << avg/num << "\n";
 }
