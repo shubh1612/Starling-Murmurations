@@ -9,13 +9,13 @@
 using namespace std;
 
 static float E_INITIAL = 100000000;
-static float MEAN_XY = 100;  
+static float MEAN_XY = 500;  
 static float MEAN_Z = 20;
-static float VAR_POSXY = 30;
+static float VAR_POSXY = 100;
 static float VAR_POSZ = 2;
-static float MEAN_VEL = 5; 
-static float VAR_VEL = 1; 
-static float TIME_STEP = 0.05; 
+static float MEAN_VEL = 40; 
+static float VAR_VEL = 10; 
+static float TIME_STEP = 5; 
 
 
 void environment::init_environment(void){
@@ -43,8 +43,12 @@ void environment::init_environment(void){
 		float number2 = distribution2(generator2);
 		p.z = number2;
 
-		float number3 = distribution3(generator3);				
-		v.v_x = v.v_y = v.v_z = number3;
+		float number3 = distribution3(generator3);
+		v.v_x = number3;
+		number3 = distribution3(generator3);
+		v.v_y = number3;
+		number3 = distribution3(generator3);
+		v.v_z = number3;
 
 		c.E_mech_old = E_INITIAL; /**some value **/
 		c.pos_new = p;

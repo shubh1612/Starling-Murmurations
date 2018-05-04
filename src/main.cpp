@@ -16,7 +16,7 @@ void init2D(float r, float g, float b)
 {
 	glClearColor(r,g,b,0.0);  
 	glMatrixMode (GL_PROJECTION);
-	gluOrtho2D (0.0, 200.0, 0.0, 150.0);
+	gluOrtho2D (0.0, 1000.0, 0.0, 1000.0);
 }
 
 void updates(void){
@@ -62,7 +62,7 @@ void display(void)
 		mod = sqrt(v.v_x*v.v_x + v.v_y*v.v_y);
 		
 		glVertex2f(p.x, p.y);
-		glVertex2f(p.x + 5.0*v.v_x/mod, p.y + 5.0*v.v_y/mod);
+		glVertex2f(p.x + 10.0*v.v_x/mod, p.y + 10.0*v.v_y/mod);
 	}
 	glEnd();
 
@@ -84,8 +84,11 @@ int main(int argc,char *argv[]){
 	
 	glutInit(&argc,argv);
 	glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+// 	glutGet(GLUT_WINDOW_WIDTH)
+// glutGet(GLUT_WINDOW_HEIGHT)
 	glutInitWindowSize (1000, 1000);
 	glutInitWindowPosition (0, 0);
+	glViewport(0, 0, 1000, 1000);
 	mainwindow = glutCreateWindow ("points and lines");
 	init2D(0.0,0.0,0.0);
 	glutDisplayFunc(display);

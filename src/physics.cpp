@@ -1,16 +1,43 @@
 #include <vector>
 #include "physics.hpp"
 #include <cmath>
+#include <GL/glut.h>
 
 using namespace std;
 
+// static float NEIGHBOUR_RADIUS = 10.0; // constant
+// static float EPSILON_COHESION = 0.5; // constant
+// static float EPSILON_SEPARATION = -0.072; // constant
+// static float EPSILON_ALIGNMENT = 0.01; // constant
+// static float MASS_STARLING = 10; // constant
+// static float EPSILON_V = 1;
+// static float EPSILON_CLOSE = 0.01;
+
+// static float NEIGHBOUR_RADIUS = 10.0; // constant
+// static float EPSILON_COHESION = 0.0133; // constant
+// static float EPSILON_SEPARATION = -15000; // constant
+// static float EPSILON_ALIGNMENT = 0.125; // constant
+// static float MASS_STARLING = 10; // constant
+// static float EPSILON_V = 1;
+// static float EPSILON_CLOSE = 900;
+// static float SPEED_LIMIT = 800;
+// static float X_LIMIT = 100;
+// static float Y_LIMIT = 100;
+// static float Z_LIMIT = 100;
+// static float WALL_FORCE = 30;
+
 static float NEIGHBOUR_RADIUS = 10.0; // constant
-static float EPSILON_COHESION = 0.5; // constant
-static float EPSILON_SEPARATION = -0.072; // constant
-static float EPSILON_ALIGNMENT = 0.01; // constant
+static float EPSILON_COHESION = 0.02; // constant
+static float EPSILON_SEPARATION = -0.0028; // constant
+static float EPSILON_ALIGNMENT = 0.001; // constant
 static float MASS_STARLING = 10; // constant
 static float EPSILON_V = 1;
-static float EPSILON_CLOSE = 0.01;
+static float EPSILON_CLOSE = 10;
+static float SPEED_LIMIT = 100;
+static float WALL_FORCE = 100;
+static float WIDTH = 1000;
+static float HEIGHT = 1000;
+static float WALL = 100;
 
 position::position(void){
 	x = 0.0;
@@ -162,24 +189,39 @@ velocity starling::separation_update(vector<starling> &murmuration){
 velocity starling::alignment_update(vector<starling> &murmuration){
 	velocity dsum;
 	for(int i = 0; i < neighbours.size(); i++){
-		dsum = dsum + murmuration[neighbours[i]].v_old - v_old;
+		dsum = dsum + murmuration[neighbours[i]].v_old;
 	}
+	dsum = dsum/neighbours.size();
 
 	velocity delta_v;
 
-	delta_v = dsum*EPSILON_ALIGNMENT;
+	delta_v = (dsum - v_old)*EPSILON_ALIGNMENT;
 
 	return delta_v;
 }
 
 void starling::update_velocity(vector<starling> &murmuration){
 	v_new = v_old + alignment_update(murmuration) + separation_update(murmuration) + cohesion_update(murmuration);
+	if((pow(v_new.v_x, 2) + pow(v_new.v_y, 2) + pow(v_new.v_z, 2)) > SPEED_LIMIT)
+		v_new = v_new/SPEED_LIMIT;
 }
 
 void starling::update_position(float time_step){
 	pos_new.x = pos_old.x + v_new.v_x*time_step;
 	pos_new.y = pos_old.y + v_new.v_y*time_step;
 	pos_new.z = pos_old.z + v_new.v_z*time_step;
+
+	if(pos_new.x < WALL)
+		v_new.v_x += WALL_FORCE;
+	else if(pos_new.x > WIDTH - WALL)
+		v_new.v_x -= WALL_FORCE;
+
+	if(pos_new.y < WALL)
+		v_new.v_y += WALL_FORCE;
+	else if(pos_new.y > HEIGHT - WALL)
+		v_new.v_y -= WALL_FORCE;
+	
+	
 }
 
 void starling::update_stored_energy(void){

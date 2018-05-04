@@ -4,6 +4,14 @@
 
 using namespace std;
 
+// static float NEIGHBOUR_RADIUS = 10.0; // constant
+// static float EPSILON_COHESION = 0.5; // constant
+// static float EPSILON_SEPARATION = -0.072; // constant
+// static float EPSILON_ALIGNMENT = 0.01; // constant
+// static float MASS_STARLING = 10; // constant
+// static float EPSILON_V = 1;
+// static float EPSILON_CLOSE = 0.01;
+
 static float NEIGHBOUR_RADIUS = 10.0; // constant
 static float EPSILON_COHESION = 0.0133; // constant
 static float EPSILON_SEPARATION = -15000; // constant
@@ -150,7 +158,7 @@ velocity starling::separation_update(vector<starling> &murmuration){
 	for(int i = 0; i < neighbours.size(); i++){
 		position p = murmuration[neighbours[i]].pos_old;
 		if((pow(p.x - pos_old.x, 2) + pow(p.y - pos_old.y, 2) + pow(p.z - pos_old.z, 2)) < EPSILON_CLOSE)
-			sep = sep - (murmuration[neighbours[i]].pos_old - pos_old);
+			sep = sep + murmuration[neighbours[i]].pos_old - pos_old;
 	}
 
 	velocity delta_v;
@@ -187,7 +195,7 @@ void starling::update_velocity(vector<starling> &murmuration){
 void starling::update_position(float time_step){
 	pos_new.x = pos_old.x + v_new.v_x*time_step;
 	pos_new.y = pos_old.y + v_new.v_y*time_step;
-//	pos_new.z = pos_old.z + v_new.v_z*time_step;
+	pos_new.z = pos_old.z + v_new.v_z*time_step;
 
 	if(pos_new.x > X_LIMIT)
 		v_new.v_x = v_new.v_x - WALL_FORCE;
