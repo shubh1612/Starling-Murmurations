@@ -10,9 +10,9 @@ using namespace std;
 
 static float E_INITIAL = 100000000;
 static float MEAN_XY = 500;  
-static float MEAN_Z = 20;
+static float MEAN_Z = 50;
 static float VAR_POSXY = 100;
-static float VAR_POSZ = 2;
+static float VAR_POSZ = 20;
 static float MEAN_VEL = 40; 
 static float VAR_VEL = 10; 
 static float TIME_STEP = 5; 

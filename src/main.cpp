@@ -20,12 +20,14 @@ void init2D(float r, float g, float b)
 }
 
 void updates(void){
+	double start = omp_get_wtime();	
 	env.update();
 	env.handle_intersection();
 	env.display_energy();
 	glutSetWindow(mainwindow);
 	glutPostRedisplay();
-	// usleep(10000);
+	if( omp_get_wtime() - start < 1000.0 )
+		usleep((start + 1000.0 - omp_get_wtime()));
 }
 
 void display(void)
@@ -34,25 +36,23 @@ void display(void)
 	velocity v;
 	float mod;
 	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(1.0, 0.0, 0.0);
 	glPointSize(5.0);
 	//draw two points
-	glBegin(GL_POINTS);
+	
 	// cout << env.num << endl;
 	for(int i = 0; i < env.num; i++)
 	{	
+
 		p = env.murmuration[i].pos_new;
 		v = env.murmuration[i].v_new;
 		mod = sqrt(v.v_x*v.v_x + v.v_y*v.v_y);
-		
+		glColor3f(1.0, 0.0, p.z*2);
+		glBegin(GL_POINTS);
 		glVertex2f(p.x, p.y);
+		glEnd();
 		cout << p.x << " " << p.y << endl;
-		// glBegin(GL_LINE);
-		// glVertex2f(p.x, p.y);
-		// glVertex2f(p.x + 10.0*v.v_x/mod, p.y + 10.0*v.v_y/mod);
-		// glEnd();
 	}
-	glEnd();
+	// glEnd();
 
 	glBegin(GL_LINES);
 	for(int i = 0; i < env.num; i++)

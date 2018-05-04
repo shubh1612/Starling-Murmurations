@@ -26,15 +26,15 @@ using namespace std;
 // static float Z_LIMIT = 100;
 // static float WALL_FORCE = 30;
 
-static float NEIGHBOUR_RADIUS = 10.0; // constant
-static float EPSILON_COHESION = 0.02; // constant
+static float NEIGHBOUR_RADIUS = 8.0; // constant
+static float EPSILON_COHESION = 0.020; // constant
 static float EPSILON_SEPARATION = -0.0028; // constant
-static float EPSILON_ALIGNMENT = 0.001; // constant
+static float EPSILON_ALIGNMENT = 0.0001; // constant
 static float MASS_STARLING = 10; // constant
 static float EPSILON_V = 1;
-static float EPSILON_CLOSE = 10;
+static float EPSILON_CLOSE = 40;
 static float SPEED_LIMIT = 100;
-static float WALL_FORCE = 100;
+static float WALL_FORCE = 200;
 static float WIDTH = 1000;
 static float HEIGHT = 1000;
 static float WALL = 100;
