@@ -24,8 +24,12 @@ void environment::init_environment(void){
 
 	murmuration.resize(num);
 	default_random_engine generator1, generator2, generator3;
-	normal_distribution<float> distribution1(MEAN_XY, VAR_POSXY);
-	normal_distribution<float> distribution2(MEAN_Z, VAR_POSZ);
+	// normal_distribution<float> distribution1(MEAN_XY, VAR_POSXY);
+	// normal_distribution<float> distribution2(MEAN_Z, VAR_POSZ);
+	// normal_distribution<float> distribution3(MEAN_VEL, VAR_VEL);
+	uniform_real_distribution<float> distribution1(0, 1000);
+	uniform_real_distribution<float> distribution2(0, 100);
+	// uniform_real_distribution<float> distribution3(MEAN_VEL, VAR_VEL);
 	normal_distribution<float> distribution3(MEAN_VEL, VAR_VEL);
 
 	#pragma omp parallel for

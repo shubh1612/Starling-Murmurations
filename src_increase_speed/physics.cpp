@@ -27,9 +27,9 @@ using namespace std;
 // static float WALL_FORCE = 30;
 
 static float NEIGHBOUR_RADIUS = 8.0; // constant
-static float EPSILON_COHESION = 0.020; // constant
-static float EPSILON_SEPARATION = -0.0028; // constant
-static float EPSILON_ALIGNMENT = 0.0001; // constant
+static float EPSILON_COHESION = 0.0204; // constant
+static float EPSILON_SEPARATION = -0.0029; // constant
+static float EPSILON_ALIGNMENT = 0.0000000; // constant
 static float MASS_STARLING = 10; // constant
 static float EPSILON_V = 1;
 static float EPSILON_CLOSE = 40;
