@@ -124,20 +124,9 @@ void starling::get_neighbours(vector<starling> &murmuration){
 		#pragma omp parallel for num_threads(4)
 		for(int i=0;i<star_num;i++)
 		{	
-			murmuration[i].neighbours.clear();
 			murmuration[i].pos_old = murmuration[i].pos_new;
 			murmuration[i].v_old = murmuration[i].v_new;
 			murmuration[i].neighbours.resize(7);
-
-			int count = 0;
-			position p1, p2;
-			p1 = murmuration[i].pos_old;
-
-			for(int j=1;j<8;j++){
-				p2 = murmuration[(i+j)%star_num].pos_old;
-				float dist;
-				dist = pow((p1.x - p2.x), 2) + pow((p1.y - p2.y), 2) + pow((p1.z - p2.z), 2);
-			}
 		}
 	}
 	else
